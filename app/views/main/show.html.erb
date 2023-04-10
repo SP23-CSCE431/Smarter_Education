@@ -1,2 +1,33 @@
-<h1>You're logged in! Welcome to the Admin Dashboard!</h1>
-<%= link_to "Sign Out", destroy_admin_session_path %>
+<!DOCTYPE html>
+<html>
+<head>
+	<%= stylesheet_link_tag "style.css" %>
+</head>
+
+<% @current_user = User.find_by(email: current_admin.email) %>
+<% @campus = campus_find_by(current_user.campus_id) %>
+<% @district = district_find_by(current_user.district_id) %>
+
+<body>
+
+<div class="body">
+  <%# Show current user's name and pull info from database %>
+
+  <p>
+  Welcome <%= current_admin.full_name %> <br> <%= current_admin.email %> <br>
+  You are assigned to campus <%= @campus.name %> (ID: <%= current_user.campus_id %>) <br>
+  You are assigned to district <%= @district.name %> (ID: <%= current_user.district_id %>)
+  </p>
+
+  <%#= image_tag ("Attendance_graph.png") %>
+
+  <%# <form> %>
+    <%# Dummy data that will be updated to contain a template field of data for the user to enter data into -->
+    <%# <label for="rec">Recommendation Report:</label> %>
+    <%# <input type="text" id="rec" name="rec"><br> %>
+    <%# <input type="submit" value="Submit"> %>
+  <%# </form> %>
+</div>
+
+</body>
+</html>
